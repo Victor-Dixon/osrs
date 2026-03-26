@@ -93,8 +93,8 @@ public class GoalStack {
             List<String> loaded = gson.fromJson(r, type);
             if (loaded != null) {
                 goals.clear();
-                for (int i = loaded.size() - 1; i >= 0; i--) {
-                    goals.push(loaded.get(i));
+                for (String goal : loaded) {
+                    goals.addLast(goal);
                 }
             }
         } catch (Exception e) {

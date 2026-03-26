@@ -25,8 +25,8 @@ public class MineAction extends Action {
             ));
         }
 
-        if (!current.isSnapshotVersion(getOriginatingSnapshotVersion())) {
-            return ValidationResult.invalid("VERSION_MISMATCH: snapshot changed during planning");
+        if (current.getVersion() < getOriginatingSnapshotVersion()) {
+            return ValidationResult.invalid("VERSION_REGRESSION");
         }
 
         boolean targetExists = current.getObjects().stream()

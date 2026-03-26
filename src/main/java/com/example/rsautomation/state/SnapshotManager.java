@@ -32,12 +32,11 @@ public class SnapshotManager {
      * Called on game tick - synchronous capture on client thread.
      */
     public void onGameTick() {
-        clientThread.invoke(() -> {
-            if (!client.isClientThread()) {
-                return;
-            }
-            captureSnapshot();
-        });
+        if (!client.isClientThread()) {
+            clientThread.invoke(this::captureSnapshot);
+            return;
+        }
+        captureSnapshot();
     }
 
     private void captureSnapshot() {
