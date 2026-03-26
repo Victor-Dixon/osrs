@@ -14,9 +14,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>11</maven.compiler.release>
-        <runelite.version>1.10.52</runelite.version>
+        <runelite.version>1.9.8</runelite.version>
         <junit.jupiter.version>5.11.4</junit.jupiter.version>
-        <mockito.version>5.15.2</mockito.version>
     </properties>
 
     <repositories>
@@ -24,12 +23,23 @@
             <id>runelite</id>
             <url>https://repo.runelite.net</url>
         </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>net.runelite</groupId>
-            <artifactId>client</artifactId>
+            <artifactId>runelite-api</artifactId>
+            <version>${runelite.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.runelite</groupId>
+            <artifactId>runelite-client</artifactId>
             <version>${runelite.version}</version>
             <scope>provided</scope>
         </dependency>
@@ -38,12 +48,6 @@
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-junit-jupiter</artifactId>
-            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
