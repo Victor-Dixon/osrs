@@ -1,6 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.example</groupId>
@@ -9,13 +10,12 @@
     <packaging>jar</packaging>
 
     <name>rsautomation</name>
-    <description>RuneLite plugin automation architecture</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <runelite.version>1.9.8</runelite.version>
-        <junit.jupiter.version>5.11.4</junit.jupiter.version>
     </properties>
 
     <repositories>
@@ -30,6 +30,7 @@
     </repositories>
 
     <dependencies>
+        <!-- Needed for net.runelite.api.* -->
         <dependency>
             <groupId>net.runelite</groupId>
             <artifactId>runelite-api</artifactId>
@@ -37,18 +38,19 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Needed for net.runelite.client.callback.ClientThread -->
         <dependency>
             <groupId>net.runelite</groupId>
-            <artifactId>runelite-client</artifactId>
+            <artifactId>client</artifactId>
             <version>${runelite.version}</version>
             <scope>provided</scope>
         </dependency>
 
+        <!-- Injection annotations -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
         </dependency>
     </dependencies>
 
@@ -57,45 +59,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <release>${maven.compiler.release}</release>
+                    <release>11</release>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.5.2</version>
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>coverage</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.jacoco</groupId>
-                        <artifactId>jacoco-maven-plugin</artifactId>
-                        <version>0.8.12</version>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>prepare-agent</goal>
-                                </goals>
-                            </execution>
-                            <execution>
-                                <id>report</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>report</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
