@@ -52,4 +52,4 @@ jobs:
 
       - name: Coverage report
         if: matrix.java == 11
-        run: mvn -B -ntp jacoco:report
+        run: mvn -B -ntp -Pcoverage test jacoco:report
