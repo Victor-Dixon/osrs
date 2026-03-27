@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example</groupId>
+    <artifactId>rsautomation</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>rsautomation</name>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <runelite.version>1.9.8</runelite.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>runelite</id>
+            <url>https://repo.runelite.net</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Needed for net.runelite.api.* -->
+        <dependency>
+            <groupId>net.runelite</groupId>
+            <artifactId>runelite-api</artifactId>
+            <version>${runelite.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Needed for net.runelite.client.callback.ClientThread -->
+        <dependency>
+            <groupId>net.runelite</groupId>
+            <artifactId>client</artifactId>
+            <version>${runelite.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- Injection annotations -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>11</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -107,7 +107,7 @@ public class SnapshotManager {
                             client,
                             obj.getLocalLocation(),
                             plane,
-                            obj.getLogicalHeight()
+                            resolveObjectHeight(obj)
                         );
 
                         objects.add(new ObjectRecord(
@@ -141,6 +141,15 @@ public class SnapshotManager {
         }
 
         return "object_" + obj.getId();
+    }
+
+    private int resolveObjectHeight(GameObject obj) {
+        Renderable renderable = obj.getRenderable();
+        if (renderable instanceof Model) {
+            return ((Model) renderable).getModelHeight();
+        }
+
+        return 0;
     }
 
     private List<InventoryRecord> captureInventory() {
