@@ -35,13 +35,13 @@ jobs:
             ${{ runner.os }}-m2-
 
       - name: Compile
-        run: mvn -B -ntp clean compile
+        run: mvn -s .mvn/settings.xml -B -ntp clean compile -U
 
       - name: Unit tests
-        run: mvn -B -ntp test
+        run: mvn -s .mvn/settings.xml -B -ntp test -U
 
       - name: Package
-        run: mvn -B -ntp package -DskipTests
+        run: mvn -s .mvn/settings.xml -B -ntp package -DskipTests -U
 
       - name: Upload jar artifact
         if: matrix.java == 11
@@ -52,4 +52,4 @@ jobs:
 
       - name: Coverage report
         if: matrix.java == 11
-        run: mvn -B -ntp -Pcoverage test jacoco:report
+        run: mvn -s .mvn/settings.xml -B -ntp -Pcoverage test jacoco:report -U
